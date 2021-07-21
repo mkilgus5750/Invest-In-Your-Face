@@ -1,16 +1,21 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
-  variants: {
-    extend: {},
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer')
+  ],
+  purge: {
+      enabled: false, //true for production build
+      content: [
+          'blog/templates/*.html',
+          'blog/templates/**/*.html'
+      ]
   },
-  plugins: [],
   theme: {
     extend: {
       colors: {
-        sky: colors.sky,
-        teal: colors.teal,
-        rose: colors.rose,
+        primary: colors.red,
       }
     }
   }

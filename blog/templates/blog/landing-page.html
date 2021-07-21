@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load tailwind_tags %}
 {% block content %}
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="bg-white">
@@ -27,7 +27,7 @@
               <p class="mt-4 text-base text-gray-500">{{ post.blurb }}</p>
             </div>
             <div class="p-6 bg-gray-50 rounded-bl-2xl rounded-br-2xl md:px-8">
-              <a href="{% url 'post-detail' post.slug %}" class="text-base font-medium text-indigo-700 hover:text-indigo-600">See More<span aria-hidden="true"> &rarr;</span></a>
+              <a href="{% url 'post-detail' post.slug %}" class="text-base font-medium text-gray-700 hover:text-indigo-600">See More<span aria-hidden="true"> &rarr;</span></a>
             </div>
           </div>
           {% endfor %}
@@ -55,14 +55,6 @@
               </defs>
               <rect width="404" height="384" fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)" />
             </svg>
-            <svg class="absolute bottom-12 left-full transform translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
-              <defs>
-                <pattern id="d3eb07ae-5182-43e6-857d-35c643af9034" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-                </pattern>
-              </defs>
-              <rect width="404" height="384" fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)" />
-            </svg>
           </div>
         </div>
         <div class="relative px-4 sm:px-6 lg:px-8">
@@ -73,22 +65,28 @@
             </h1>
           </div>
           <div class="grid place-items-center mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-            <figure>
-                {% for item in res_data.items %}
-                <iframe
-                  class="w-full rounded-lg"
-                  width="560"
-                  height="314"
-                  src="https://www.youtube.com/embed/{{ item.id.videoId }}?autoplay=1"
-                  srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/{{ item.id.videoId }}?autoplay=1><img  src={{ item.snippet.thumbnails.high.url }} alt='{{ item.snippet.title }}'><span>▶</span></a>"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                  title="{{ item.snippet.title }}"
-                ></iframe>
-                <figcaption>{{ item.snippet.description }}</figcaption>
-                {% endfor %}
-            </figure>
+            <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+              <button type="button" class="relative block w-full bg-white rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <span class="sr-only">Watch our video to learn more</span>
+                <figure>
+                  {% for item in res_data.items %}
+                  <iframe
+                    class="w-full rounded-lg"
+                    width="560"
+                    height="314"
+                    src="https://www.youtube.com/embed/{{ item.id.videoId }}"
+                    srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=https://www.youtube.com/embed/{{ item.id.videoId }}?autoplay=1><img  src={{ item.snippet.thumbnails.high.url }} alt='{{ item.snippet.title }}'><span>▶</span></a>"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    title="{{ item.snippet.title }}"
+                  ></iframe>
+                  <figcaption>{{ item.snippet.description }}</figcaption>
+                  {% endfor %}
+              </figure>                
+              
+              </button>
+            </div>
           </div>
         </div>
       </div>
