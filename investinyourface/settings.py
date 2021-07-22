@@ -41,7 +41,10 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+TAILWIND_APP_NAME = 'blog'
+
 INSTALLED_APPS = [
+    'tailwind',
     'blog',
     'django.contrib.admin',
     'django.contrib.auth',
